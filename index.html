@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكـلس تكنولوجي - حلول تكنولوجية متطورة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #7c3aed;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            direction: rtl;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .logo-img {
+            height: 50px;
+            width: auto;
+            margin-left: 10px;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-right: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            border-top: 4px solid var(--primary);
+            cursor: pointer;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.8rem;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .service-link {
+            display: inline-block;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .service-link:hover {
+            color: var(--accent);
+            gap: 10px;
+        }
+
+        /* New Services Highlight */
+        .new-service {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .new-service::before {
+            content: 'جديد';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 2;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Dialog Styles */
+        .dialog-overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .dialog {
+            background-color: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .dialog-overlay.active .dialog {
+            transform: translateY(0);
+        }
+        
+        .dialog-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .dialog-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dialog-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .dialog-close:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .dialog-body {
+            padding: 25px;
+        }
+        
+        .dialog-section {
+            margin-bottom: 20px;
+        }
+        
+        .dialog-section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dialog-section ul {
+            list-style-type: none;
+            padding-right: 20px;
+        }
+        
+        .dialog-section li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        .dialog-section li::before {
+            content: '•';
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+        }
+        
+        .dialog-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dialog-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .dialog-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dialog-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: white;
+            padding: 80px 0;
+            margin: 50px 0;
+            position: relative;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            bottom: -10px;
+            right: 0;
+        }
+        
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            height: 350px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,186.7C384,213,480,235,576,213.3C672,192,768,128,864,128C960,128,1056,192,1152,208C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .about-image-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            border-radius: 20px;
+            margin: 50px 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .stat-text {
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: 0;
+            right: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-column ul li i {
+            margin-left: 8px;
+            color: var(--primary);
+        }
+        
+        .footer-column a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+            padding-right: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s;
+                gap: 30px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .logo-img {
+                height: 40px;
+            }
+            
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            
+            .dialog {
+                width: 95%;
+            }
+            
+            .dialog-footer {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo-text {
+                display: none;
+            }
+            
+            .logo-img {
+                height: 45px;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .services, .about {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo-container">
+                   <img src="logo.png" class="logo-img">
+                    <span class="logo-text">الكـلس تكنولوجي</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">الرئيسية</a></li>
+                    <li><a href="#services">خدماتنا</a></li>
+                    <li><a href="#about">من نحن</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>حلول تكنولوجية متطورة لاحتياجاتك الحديثة</h1>
+                <p>نقدم خدمات متخصصة لإبقائك متصلاً وأنظمة تعمل بسلاسة مع حلول احترافية تلبي جميع احتياجاتك التقنية.</p>
+                <a href="#services" class="btn">استكشف الخدمات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا</h2>
+                <p>نقدم مجموعة من الخدمات التقنية المتخصصة لتلبية احتياجاتك</p>
+            </div>
+            <div class="services-grid">
+                <!-- خدمة تصميم مواقع الويب -->
+                <div class="service-card new-service" data-service="web-design">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>تصميم مواقع الويب</h3>
+                    <p>نصمم مواقع ويب احترافية متجاوبة مع جميع الأجهزة، مع أحدث التقنيات وأفضل ممارسات SEO لضمان ظهور موقعك في نتائج البحث.</p>
+                    <span class="service-link">المزيد من المعلومات <i class="fas fa-arrow-left"></i></span>
+                </div>
+                
+                <!-- خدمة تصميم برامج الهاتف -->
+                <div class="service-card new-service" data-service="mobile-apps">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile"></i>
+                    </div>
+                    <h3>تصميم تطبيقات الهاتف</h3>
+                    <p>نطور تطبيقات جوال متميزة لنظامي Android و iOS، مع واجهات مستخدم بديهية وأداء ممتاز لتجربة مستخدم فريدة.</p>
+                    <span class="service-link">المزيد من المعلومات <i class="fas fa-arrow-left"></i></span>
+                </div>
+                
+                <!-- خدمة دفع فواتير ستارلينك (بدون dialog) -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-satellite"></i>
+                    </div>
+                    <h3>دفع فواتير ستارلينك</h3>
+                    <p>حلول دفع سلسة لخدمات ستارلينك الخاصة بك مع معالجة المشاكل والفواتير المرتفعة. نوفر لك أفضل الأسعار وأسرع الخدمات.</p>
+                    <a href="starlink.html" class="service-link">المزيد من المعلومات <i class="fas fa-arrow-left"></i></a>
+                </div>
+                
+                <!-- خدمة حذف حساب جوجل -->
+                <div class="service-card" data-service="google-account">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>حذف حساب جوجل بالايمي أو السيريال</h3>
+                    <p>نحن مصدر مباشر لخدمات فك قفل الهواتف وتفعيلات الأدوات والبوكسات وشحن الألعاب. حلول سريعة وموثوقة.</p>
+                    <span class="service-link">المزيد من المعلومات <i class="fas fa-arrow-left"></i></span>
+                </div>
+                
+                <!-- خدمة الخدمات عن بعد -->
+                <div class="service-card" data-service="remote-services">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <h3>الخدمات عن بعد</h3>
+                    <p>دعم عن بعد احترافي لاستكشاف الأخطاء وإصلاحها والصيانة وتحسين النظام. نحن هنا لمساعدتك أينما كنت.</p>
+                    <span class="service-link">المزيد من المعلومات <i class="fas fa-arrow-left"></i></span>
+                </div>
+                
+                <!-- خدمة برمجة نظام الكروت -->
+                <div class="service-card" data-service="mikrotik">
+                    <div class="service-icon">
+                        <i class="fas fa-router"></i>
+                    </div>
+                    <h3>برمجة نظام الكروت ستارلينك</h3>
+                    <p>تهيئة وإدارة وبرمجة نظام الكروت في ميكروتك وبرمجة الأنظمة بدون ميكروتك. حلول متكاملة وشاملة.</p>
+                    <span class="service-link">المزيد من المعلومات <i class="fas fa-arrow-left"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-text">عميل راضٍ</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-text">سنوات خبرة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-text">دعم فني</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99%</div>
+                    <div class="stat-text">رضا العملاء</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>من نحن</h2>
+                    <p>الكـلس تكنولوجي هو فريق من المحترفين المختصين ذوي الخبرة في مختلف المجالات التقنية. نحن نفتخر بتقديم خدمات عالية الجودة مصممة خصيصًا لتلبية احتياجات عملائنا.</p>
+                    <p>مع سنوات من الخبرة في المجال، نفهم أهمية الحلول التكنولوجية الموثوقة في عالم اليوم المتصل. نلتزم بتقديم أفضل الحلول التقنية التي تساعد عملائنا على تحقيق أهدافهم.</p>
+                    <a href="#contact" class="btn">اتصل بنا</a>
+                </div>
+                <div class="about-image">
+                    <div class="about-image-content">
+                        <i class="fas fa-users fa-3x" style="margin-bottom: 20px;"></i>
+                        <div>فريق من الخبراء</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>الكـلس تكنولوجي</h3>
+                    <p>تقديم حلول تكنولوجية متطورة مع الموثوقية والخبرة. نحن شريكك التقني الموثوق.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>الخدمات</h3>
+                    <ul>
+                        <li><a href="#" class="service-link" data-service="web-design">تصميم مواقع الويب</a></li>
+                        <li><a href="#" class="service-link" data-service="mobile-apps">تصميم برامج الهاتف</a></li>
+                        <li><a href="starlink.html">دفع ستارلينك</a></li>
+                        <li><a href="#" class="service-link" data-service="google-account">برامج الهواتف المحمولة</a></li>
+                        <li><a href="#" class="service-link" data-service="remote-services">الخدمات عن بعد</a></li>
+                        <li><a href="#" class="service-link" data-service="mikrotik">خدمات ميكروتيك</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> السودان/ ولاية جنوب كردفان </li>
+                        <li><i class="fas fa-phone"></i> +249115033393 </li>
+                        <li><i class="fas fa-envelope"></i>contact.alkls@gmail.com</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/alkls.tech"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 الكـلس تكنولوجي. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dialog Overlay -->
+    <div class="dialog-overlay" id="dialogOverlay">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h3 class="dialog-title" id="dialogTitle">
+                    <i class="fas fa-code"></i> تصميم مواقع الويب
+                </h3>
+                <button class="dialog-close" id="dialogClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="dialog-body" id="dialogBody">
+                <!-- سيتم تعبئة المحتوى ديناميكياً -->
+            </div>
+            <div class="dialog-footer">
+                <div class="dialog-price" id="dialogPrice">تبدأ الأسعار من 200$</div>
+                <button class="dialog-btn" id="dialogOrderBtn">
+                    <i class="fab fa-whatsapp"></i> اطلب الخدمة عبر واتساب
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change icon
+            const icon = hamburger.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Dialog functionality
+        const dialogOverlay = document.getElementById('dialogOverlay');
+        const dialogClose = document.getElementById('dialogClose');
+        const dialogTitle = document.getElementById('dialogTitle');
+        const dialogBody = document.getElementById('dialogBody');
+        const dialogPrice = document.getElementById('dialogPrice');
+        const dialogOrderBtn = document.getElementById('dialogOrderBtn');
+
+        // Service data
+        const servicesData = {
+            'web-design': {
+                title: 'تصميم مواقع الويب',
+                icon: 'fas fa-code',
+                price: 'تبدأ الأسعار من 200',
+                whatsapp: 'https://api.whatsapp.com/send?phone=249969661277&text=أريد%20طلب%20خدمة%20تصميم%20مواقع%20الويب',
+                content: `
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-list"></i> مميزات الخدمة</h4>
+                        <ul>
+                            <li>تصميم مواقع متجاوبة تعمل على جميع الأجهزة</li>
+                            <li>تحسين محركات البحث (SEO) لظهور أفضل في نتائج البحث</li>
+                            <li>تصميم واجهات مستخدم جذابة وسهلة الاستخدام</li>
+                            <li>تكامل مع وسائل التواصل الاجتماعي</li>
+                            <li>نظام إدارة محتوى سهل الاستخدام</li>
+                            <li>دعم فني مستمر بعد التسليم</li>
+                        </ul>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-clock"></i> مدة التنفيذ</h4>
+                        <p>تتراوح مدة تنفيذ المشروع بين 2-4 أسابيع حسب تعقيد الموقع والمتطلبات.</p>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-cogs"></i> التقنيات المستخدمة</h4>
+                        <ul>
+                            <li>HTML5, CSS3, JavaScript</li>
+                            <li>React.js أو Vue.js للتطبيقات الديناميكية</li>
+                            <li>Node.js أو PHP للخلفية</li>
+                            <li>قواعد بيانات MySQL أو MongoDB</li>
+                            <li>إطار عمل Bootstrap للتصميم المتجاوب</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'mobile-apps': {
+                title: 'تصميم تطبيقات الهاتف',
+                icon: 'fas fa-mobile',
+                price: 'تبدأ الأسعار من 300',
+                whatsapp: 'https://api.whatsapp.com/send?phone=249969661277&text=أريد%20طلب%20خدمة%20تصميم%20برامج%20الهاتف',
+                content: `
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-list"></i> مميزات الخدمة</h4>
+                        <ul>
+                            <li>تطوير تطبيقات أصلية لنظامي Android و iOS</li>
+                            <li>تصميم واجهات مستخدم بديهية وجذابة</li>
+                            <li>تكامل مع خدمات السحابة والتخزين</li>
+                            <li>إمكانية العمل دون اتصال بالإنترنت</li>
+                            <li>نشر التطبيق على متاجر التطبيقات</li>
+                            <li>تحديثات وصيانة مستمرة</li>
+                        </ul>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-clock"></i> مدة التنفيذ</h4>
+                        <p>تتراوح مدة تنفيذ المشروع بين 2-8 أسابيع حسب تعقيد التطبيق والمتطلبات.</p>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-cogs"></i> التقنيات المستخدمة</h4>
+                        <ul>
+                            <li>React Native للتطبيقات الهجينة</li>
+                            <li>Flutter لتطوير تطبيقات متعددة المنصات</li>
+                            <li>Java و Kotlin لنظام Android</li>
+                            <li>Swift لنظام iOS</li>
+                            <li>Firebase للخدمات السحابية</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'google-account': {
+                title: 'حذف حساب جوجل بالايمي أو السيريال',
+                icon: 'fas fa-mobile-alt',
+                price: 'تبدأ الأسعار من 80,000',
+                whatsapp: 'https://api.whatsapp.com/send?phone=249969661277&text=أريد%20طلب%20خدمة%20حذف%20حساب%20جوجل',
+                content: `
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-list"></i> مميزات الخدمة</h4>
+                        <ul>
+                            <li>فك قفل الهواتف المحمولة بكفاءة عالية</li>
+                            <li>حذف حسابات جوجل المرتبطة بالهواتف</li>
+                            <li>تفعيل الأدوات والبوكسات المختلفة</li>
+                            <li>شحن الألعاب والبرامج</li>
+                            <li>خدمة سريعة خلال 1 ساعة</li>
+                            <li>دعم فني متواصل لحل أي مشاكل</li>
+                        </ul>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-clock"></i> مدة التنفيذ</h4>
+                        <p>يتم تنفيذ الخدمة خلال ساعة واحدة حسب نوع الجهاز وتعقيد المشكلة.</p>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-cogs"></i> أنواع الأجهزة المدعومة</h4>
+                        <ul>
+                            <li>هواتف Samsung بجميع الموديلات</li>
+                            <li>هواتف Huawei و Honor</li>
+                            <li>هواتف Xiaomi و Redmi</li>
+                            <li>هواتف Oppo و Vivo و Realme</li>
+                            <li>أجهزة التابلت المختلفة</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'remote-services': {
+                title: 'الخدمات عن بعد',
+                icon: 'fas fa-laptop-house',
+                price: 'تبدأ الأسعار من 25$',
+                whatsapp: 'https://api.whatsapp.com/send?phone=249969661277&text=أريد%20طلب%20خدمة%20الخدمات%20عن%20بعد',
+                content: `
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-list"></i> مميزات الخدمة</h4>
+                        <ul>
+                            <li>دعم فني عن بعد على مدار الساعة</li>
+                            <li>استكشاف الأخطاء وإصلاحها عن بعد</li>
+                            <li>صيانة الأنظمة والبرامج</li>
+                            <li>تحسين أداء الأجهزة والأنظمة</li>
+                            <li>تثبيت وتحديث البرامج والتطبيقات</li>
+                            <li>حل مشاكل الشبكة والاتصال</li>
+                        </ul>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-clock"></i> مدة التنفيذ</h4>
+                        <p>يتم تقديم الخدمة فور الاتصال بنا، مع جلسات دعم تتراوح بين 1-3 ساعات حسب طبيعة المشكلة.</p>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-cogs"></i> مجالات الخدمة</h4>
+                        <ul>
+                            <li>صيانة أنظمة Windows و macOS</li>
+                            <li>حل مشاكل البرامج والتطبيقات</li>
+                            <li>تحسين أداء الأجهزة وإزالة الفيروسات</li>
+                            <li>إعدادات الشبكات والاتصال بالإنترنت</li>
+                            <li>دعم برامج المكاتب والإنتاجية</li>
+                            <li>استعادة البيانات المفقودة</li>
+                        </ul>
+                    </div>
+                `
+            },
+            'mikrotik': {
+                title: 'برمجة نظام الكروت ستارلينك',
+                icon: 'fas fa-router',
+                price: 'تبدأ الأسعار من 50,000',
+                whatsapp: 'https://api.whatsapp.com/send?phone=249969661277&text=أريد%20طلب%20خدمة%20برمجة%20نظام%20الكروت%20ستارلينك',
+                content: `
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-list"></i> مميزات الخدمة</h4>
+                        <ul>
+                            <li>تهيئة وإعداد أنظمة ميكروتك المتقدمة</li>
+                            <li>برمجة نظام الكروت لخدمة ستارلينك</li>
+                            <li>إدارة وتحسين أداء الشبكات</li>
+                            <li>حلول متكاملة بدون الحاجة لميكروتك</li>
+                            <li>تحسين سرعة واستقرار الاتصال</li>
+                            <li>دعم فني متخصص في أنظمة الشبكات</li>
+                        </ul>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-clock"></i> مدة التنفيذ</h4>
+                        <p>تتراوح مدة التنفيذ بين ربع ساعة ل ساعة حسب تعقيد النظام والمتطلبات.</p>
+                    </div>
+                    <div class="dialog-section">
+                        <h4><i class="fas fa-cogs"></i> التقنيات والأنظمة</h4>
+                        <ul>
+                            <li>أنظمة ميكروتك بجميع إصداراتها</li>
+                            <li>برمجة أنظمة الكروت المتقدمة</li>
+                            <li>حلول بديلة بدون ميكروتك</li>
+                            <li>إدارة النطاق الترددي والجودة</li>
+                            <li>أنظمة الحماية والأمان للشبكات</li>
+                            <li>مراقبة أداء الشبكة وإعداد التقارير</li>
+                        </ul>
+                    </div>
+                `
+            }
+        };
+
+        // Open dialog when clicking on service cards
+        document.querySelectorAll('.service-card[data-service]').forEach(card => {
+            card.addEventListener('click', () => {
+                const serviceId = card.getAttribute('data-service');
+                const service = servicesData[serviceId];
+                
+                if (service) {
+                    dialogTitle.innerHTML = `<i class="${service.icon}"></i> ${service.title}`;
+                    dialogBody.innerHTML = service.content;
+                    dialogPrice.textContent = service.price;
+                    dialogOrderBtn.onclick = () => window.open(service.whatsapp, '_blank');
+                    
+                    dialogOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Open dialog when clicking on service links in footer
+        document.querySelectorAll('.footer-column .service-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const serviceId = link.getAttribute('data-service');
+                const service = servicesData[serviceId];
+                
+                if (service) {
+                    dialogTitle.innerHTML = `<i class="${service.icon}"></i> ${service.title}`;
+                    dialogBody.innerHTML = service.content;
+                    dialogPrice.textContent = service.price;
+                    dialogOrderBtn.onclick = () => window.open(service.whatsapp, '_blank');
+                    
+                    dialogOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        // Close dialog
+        dialogClose.addEventListener('click', closeDialog);
+        dialogOverlay.addEventListener('click', (e) => {
+            if (e.target === dialogOverlay) {
+                closeDialog();
+            }
+        });
+
+        function closeDialog() {
+            dialogOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close dialog with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && dialogOverlay.classList.contains('active')) {
+                closeDialog();
+            }
+        });
+    </script>
+</body>
+</html>

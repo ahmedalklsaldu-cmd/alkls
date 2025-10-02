@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlink Alkls Tech - سداد فواتير استارلينك</title>
+    <meta name="description" content="اشترِ باقات استارلينك بأفضل الأسعار في السودان. خدمة عملاء متوفرة 24/7. دفع آمن وسريع.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/earlyaccess/droidarabickufi.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a6aa2;
+            --primary-dark: #135a8a;
+            --secondary-color: #3a8ccc;
+            --accent-color: #ff6b6b;
+            --light-bg: #f0f8ff;
+            --dark-text: #2c3e50;
+            --info-color: #1a6aa2;
+            --success-color: #27ae60;
+            --primary-gradient: linear-gradient(135deg, #1a6aa2, #3a8ccc);
+            --primary-gradient-hover: linear-gradient(135deg, #135a8a, #1a6aa2);
+            --card-shadow: 0 10px 25px rgba(26, 106, 162, 0.15);
+            --card-shadow-hover: 0 15px 35px rgba(26, 106, 162, 0.25);
+        }
+
+        body {
+            font-family: 'Droid Arabic Kufi', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            padding-top: 20px;
+            padding-bottom: 80px;
+            background-image: 
+                radial-gradient(circle at 5% 10%, rgba(26, 106, 162, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 95% 80%, rgba(58, 140, 204, 0.05) 0%, transparent 20%);
+        }
+
+        .header {
+            background: var(--primary-gradient);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(25deg);
+            pointer-events: none;
+        }
+
+        .exchange-rate {
+            background-color: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-right: 5px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .exchange-rate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* تصميم الموبايل */
+        .mobile-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(26, 106, 162, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(26, 106, 162, 0.1);
+            cursor: pointer;
+        }
+
+        .mobile-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 0;
+            background: var(--primary-gradient);
+            transition: height 0.3s ease;
+        }
+
+        .mobile-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-shadow-hover);
+        }
+
+        .mobile-card:hover::before {
+            height: 100%;
+        }
+
+        .mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .mobile-price-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .mobile-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #eee;
+        }
+
+        .btn-select {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(26, 106, 162, 0.25);
+        }
+
+        .btn-select:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(26, 106, 162, 0.35);
+            background: var(--primary-gradient-hover);
+            color: white;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 25px 0 20px;
+            color: var(--primary-color);
+            border-right: 4px solid var(--primary-color);
+            padding-right: 12px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .package-name {
+            font-weight: bold;
+            color: var(--dark-text);
+            font-size: 1.1rem;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 0.95rem;
+        }
+
+        .discount-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            box-shadow: 0 3px 8px rgba(255, 107, 107, 0.25);
+        }
+
+        .discount-amount {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .final-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .price-sdg {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .speed-info {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .new-activation {
+            color: var(--success-color);
+            font-size: 0.85rem;
+            font-weight: bold;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .why-us {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .why-us::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary-gradient);
+        }
+        
+        .why-us-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .why-us-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            background: rgba(26, 106, 162, 0.05);
+            transform: translateX(-5px);
+        }
+        
+        .benefit-icon {
+            background: var(--primary-gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(26, 106, 162, 0.25);
+        }
+        
+        .benefit-text {
+            flex: 1;
+        }
+        
+        .benefit-text h5 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .fee-discount-notice {
+            font-size: 0.85rem;
+            color: var(--success-color);
+            margin-top: 8px;
+            background: rgba(39, 174, 96, 0.1);
+            padding: 5px 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        
+        /* تصنيفات الباقات */
+        .package-category {
+            margin-bottom: 35px;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-right: 12px;
+            border-right: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+        
+        /* قسم الأسئلة الشائعة */
+        .faq-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .faq-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .faq-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 3px;
+        }
+        
+        .accordion-button {
+            font-weight: bold;
+            padding: 15px;
+            border: 1px solid rgba(26, 106, 162, 0.1);
+            margin-bottom: 10px;
+            border-radius: 10px !important;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(26, 106, 162, 0.1);
+            color: var(--primary-color);
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(26, 106, 162, 0.1);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(26, 106, 162, 0.3);
+        }
+        
+        .accordion-body {
+            padding: 15px;
+            background: rgba(26, 106, 162, 0.03);
+            border-radius: 0 0 10px 10px;
+            border: 1px solid rgba(26, 106, 162, 0.1);
+            border-top: none;
+        }
+        
+        /* تحسينات للجوّال */
+        @media (max-width: 768px) {
+            .header {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            .mobile-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .mobile-header .final-price {
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+            
+            .mobile-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-select {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+            }
+            
+            .why-us, .faq-section {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 10px;
+            }
+            
+            .benefit-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+        
+        .best-value-badge {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .alert-info {
+            background-color: rgba(26, 106, 162, 0.1);
+            border-color: rgba(26, 106, 162, 0.2);
+            color: var(--dark-text);
+            border-radius: 15px;
+            padding: 20px;
+            border-right: 5px solid var(--info-color);
+        }
+        
+        .btn-success {
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(26, 106, 162, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 106, 162, 0.4);
+            background: var(--primary-gradient-hover);
+        }
+        
+        .fixed-bottom {
+            padding: 15px;
+            background: linear-gradient(to top, var(--light-bg) 70%, transparent);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 90px;
+            left: 20px;
+            z-index: 99;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(26, 106, 162, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 106, 162, 0.4);
+        }
+
+        /* تحسينات إضافية */
+        .package-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .package-feature {
+            background: rgba(26, 106, 162, 0.1);
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .customer-name {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .customer-rating {
+            color: #ffc107;
+        }
+        
+        /* تحسينات جديدة */
+        .card-highlight {
+            border: 2px solid var(--primary-color);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- العنوان الرئيسي -->
+        <div class="header text-center">
+            <h1><i class="fas fa-satellite me-2"></i> سداد فواتير استارلينك</h1>
+            <p class="mb-0 mt-2">اختر فاتورتك المناسبة واحصل على أفضل الأسعار</p>
+        </div>
+
+        <!-- عرض الموبايل -->
+        <div class="package-category">
+            <h4 class="section-title"> الفواتير المتاحة</h4>
+            
+            <!-- أفضل قيمة -->
+            <div class="mobile-card" data-price="385000" data-name="اليمن">
+                <span class="best-value-badge">تنشيط جديد</span>
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0"> تغيير الفاتورة او تنشيط جديد</h5>
+                    <span class="final-price">85 USD</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">300,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=249969661277&amp;text=أريد%20شراء%20باقة%20تنشيط جديد" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <!-- الباقات الأخرى -->
+            <div class="mobile-card" data-price="395000" data-name="الاوربي">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0"> الاوربي </h5>
+                    <span class="final-price">89€</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">406,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=249969661277&amp;text=أريد%20شراء%20باقة%20الاوربي" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <div class="mobile-card" data-price="400000" data-name="اليمن">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0">اليمن </h5>
+                    <span class="final-price">100$</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">388,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=0115033393&amp;text=أريد%20شراء%20باقة%20اليمن" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <div class="mobile-card" data-price="430000" data-name="زامبيا">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0">زامبيا </h5>
+                    <span class="final-price">ZMW 2,500</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">418,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=249969661277&amp;text=أريد%20شراء%20باقة%20زامبيا" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <div class="mobile-card" data-price="390000" data-name="رواندا">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0">رواندا </h5>
+                    <span class="final-price">RWF 128,000</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">350,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=249969661277&amp;text=أريد%20شراء%20باقة%20رواندا" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <div class="mobile-card" data-price="420000" data-name="كينيا">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0">كينيا </h5>
+                    <span class="final-price">KES 14,000</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">400,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=249969661277&amp;text=أريد%20شراء%20باقة%20كينيا" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <div class="mobile-card" data-price="390000" data-name="موزانبيق">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0">موزانبيق </h5>
+                    <span class="final-price">MZN 6,000</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">350,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=0115033393&amp;text=أريد%20شراء%20باقة%20موزانبيق" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <div class="mobile-card" data-price="150000" data-name="نيجيري">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0">نيجيري</h5>
+                    <span class="final-price">49ngn</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">150,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=249969661277&amp;text=أريد%20شراء%20باقة%20الاوربي" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+            
+            <div class="mobile-card" data-price="360000" data-name="ياباني">
+                <div class="mobile-header">
+                    <h5 class="package-name mb-0">ياباني</h5>
+                    <span class="final-price">14400¥</span>
+                </div>
+                <div class="package-details">
+                    <span class="package-feature">سرعة عالية</span>
+                    <span class="package-feature">لا حدود للاستخدام</span>
+                </div>
+                <div class="mobile-footer">
+                    <span class="price-sdg">370,000 SDG</span>
+                    <a href="https://api.whatsapp.com/send?phone=249969661277&amp;text=أريد%20شراء%20باقة%20ياباني" class="btn btn-select">اختر الباقة</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم لماذا تختارنا -->
+        <div class="why-us">
+            <h3 class="why-us-header">لماذا تختارنا؟</h3>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-bolt fa-lg"></i>
+                </div>
+                <div class="benefit-text">
+                    <h5>سرعة في التنفيذ</h5>
+                    <p class="mb-0">نقوم بتنفيذ طلباتك في أسرع وقت ممكن مع الحفاظ على الجودة</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt fa-lg"></i>
+                </div>
+                <div class="benefit-text">
+                    <h5>أمان وموثوقية</h5>
+                    <p class="mb-0">حساباتك ومعلوماتك محمية بأعلى معايير الأمان</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-tags fa-lg"></i>
+                </div>
+                <div class="benefit-text">
+                    <h5>أسعار تنافسية</h5>
+                    <p class="mb-0">نوفر لك أفضل الأسعار في السوق مع عروض خاصة دائمة</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-headset fa-lg"></i>
+                </div>
+                <div class="benefit-text">
+                    <h5>دعم فني متواصل</h5>
+                    <p class="mb-0">فريق دعم فني متاح على مدار الساعة لمساعدتك في أي وقت</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الأسئلة الشائعة -->
+        <div class="faq-section">
+            <h3 class="faq-header">الأسئلة الشائعة</h3>
+            
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            كيف يمكنني الدفع؟
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            يمكنك الدفع بالجنيه السوداني عبر التحويل البنكي أو محافظ البنوك الإلكترونية. بعد التحويل، أرسل إشعار الدفع عبر الواتساب وسنقوم بتنشيط الباقة فوراً.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            ما هو وقت التنفيذ؟
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            يتم تنفيذ الطلب خلال 15-30 دقيقة بعد تأكيد الدفع. في بعض الأحيان قد تستغرق العملية وقتاً أطول بسبب ظروف تقنية.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            هل تقدمون دعم فني بعد الشراء؟
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            نعم، نوفر دعم فني مجاني على مدار الساعة لجميع العملاء لمساعدتهم في أي مشكلة تواجههم.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            هل يمكنني تجديد الباقة قبل انتهائها؟
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            نعم، يمكنك تجديد الباقة في أي وقت قبل انتهائها، وسيتم إضافة المدة الجديدة إلى المدة المتبقية.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ملاحظة -->
+        <div class="alert alert-info">
+            <div class="d-flex">
+                <i class="fas fa-info-circle fa-2x me-3 align-self-start"></i>
+                <div>
+                    <h5>ملاحظة مهمة</h5>
+                    <p class="mb-0">يوجد خصم إضافي عند تجديد جهازين او اكتر </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- زر الاتصال -->
+        <div class="fixed-bottom p-3">
+            <div class="d-flex justify-content-center">
+                <a href="https://api.whatsapp.com/send?phone=249969661277" class="btn btn-success btn-lg rounded-pill shadow">
+                    <i class="fab fa-whatsapp me-2"></i> اتصل بنا على الواتساب
+                </a>
+            </div>
+        </div>
+        
+        <!-- زر العودة للأعلى -->
+        <a href="#" class="back-to-top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // زر العودة للأعلى
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // إضافة تأثير النقر على البطاقات
+        const cards = document.querySelectorAll('.mobile-card');
+        cards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // تجنب تنفيذ النقر إذا تم النقر على زر الاختيار
+                if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                    const link = this.querySelector('a.btn-select');
+                    if (link) {
+                        link.click();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
